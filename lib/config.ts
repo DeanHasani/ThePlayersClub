@@ -2,7 +2,7 @@
 export const CONTACT_CONFIG = {
   // WhatsApp configuration
   whatsapp: {
-    number: "355692539363", // Your WhatsApp number (without + sign)
+    number: "355690000000, // Your WhatsApp number (without + sign)
     displayNumber: "Whatsapp", // How the number appears to users
   },
 
@@ -15,7 +15,7 @@ export const CONTACT_CONFIG = {
   // Social media links (for future use)
   social: {
     facebook: "https://facebook.com/theplayersclub",
-    instagram: "https://instagram.com/theplayersclub",
+    instagram: "https://instagram.com/thepl4yers",
     tiktok: "https://tiktok.com/@theplayersclub",
   },
 
