@@ -2,7 +2,7 @@
 export const CONTACT_CONFIG = {
   // WhatsApp configuration
   whatsapp: {
-    number: "355690000000" // Your WhatsApp number (without + sign)
+    number: "355690000000", // Your WhatsApp number (without + sign)
     displayNumber: "Whatsapp", // How the number appears to users
   },
 
