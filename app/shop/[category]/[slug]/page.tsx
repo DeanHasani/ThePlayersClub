@@ -14,6 +14,7 @@ import AddToBagModal from "@/components/add-to-bag-modal"
 import CheckoutDialog from "@/components/checkout-dialog"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import type { Product } from "@/lib/types"
+import LoadingSpinner from "@/components/loading-spinner"
 
 interface ProductPageProps {
   params: {
@@ -153,7 +154,6 @@ export default function ProductPage({ params }: ProductPageProps) {
   const handleAddToBag = () => {
     if (!selectedSize || !isSizeAvailable(selectedSize)) return
 
-    // Always use the front image for the cart (official product image)
     const frontImage = selectedColor?.images?.front || "/placeholder.png"
 
     addItem({
@@ -174,7 +174,6 @@ export default function ProductPage({ params }: ProductPageProps) {
     setShowCheckoutDialog(true)
   }
 
-  // Handle checkout from add-to-bag modal
   const handleModalCheckout = () => {
     setShowModal(false)
     setShowCheckoutDialog(true)
@@ -200,7 +199,6 @@ export default function ProductPage({ params }: ProductPageProps) {
     }
   }
 
-  // Get current color images array
   const getCurrentImages = () => {
     if (!selectedColor?.images) return []
 
@@ -217,7 +215,6 @@ export default function ProductPage({ params }: ProductPageProps) {
   const currentImages = getCurrentImages()
   const currentImage = currentImages[currentImageIndex] || currentImages[0] || "/placeholder.png"
 
-  // Create direct checkout items for the dialog with proper product URL
   const directCheckoutItems =
     product && selectedColor && selectedSize
       ? [
@@ -230,14 +227,19 @@ export default function ProductPage({ params }: ProductPageProps) {
             size: selectedSize,
             quantity: 1,
             image: getImageUrl(selectedColor.images.front),
-            // Add product URL for the message
             productUrl: `${typeof window !== "undefined" ? window.location.origin : ""}/shop/${category}/${slug}`,
           },
         ]
       : []
 
   if (loading) {
-    return <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">Loading...</div>
+    return (
+      <div className="min-h-screen">
+        <div className="min-h-[70vh] flex items-center justify-center">
+          <LoadingSpinner />
+        </div>
+      </div>
+    )
   }
 
   if (!product) {
@@ -258,34 +260,41 @@ export default function ProductPage({ params }: ProductPageProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Product Image Carousel - Reduced height */}
+        {/* Product Image Carousel - Smooth sliding */}
         <div className="space-y-4">
-          {/* Image Container - Further reduced aspect ratio */}
           <div
-            className="aspect-[4/4.5] bg-gray-100 overflow-hidden cursor-zoom-in relative"
+            className="aspect-[4/4.5] bg-gray-100 overflow-hidden relative cursor-zoom-in"
             onClick={() => setImageZoomed(true)}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
-            <Image
-              src={currentImage || "/placeholder.png"}
-              alt={`${product.name} - ${selectedColor?.name}`}
-              width={600}
-              height={675}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              priority={true}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement
-                target.src = "/placeholder.png"
-              }}
-            />
+            <div
+              className="flex transition-transform duration-300 ease-in-out h-full w-full"
+              style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+            >
+              {currentImages.map((img, idx) => (
+                <div key={idx} className="flex-shrink-0 w-full h-full">
+                  <Image
+                    src={img || "/placeholder.png"}
+                    alt={`${product.name} - ${selectedColor?.name}`}
+                    width={600}
+                    height={675}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    priority={idx === 0}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.src = "/placeholder.png"
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Navigation Controls - Below the image frame with dots in center */}
+          {/* Navigation Controls */}
           {currentImages.length > 1 && (
             <div className="flex justify-between items-center">
-              {/* Left Arrow */}
               <button
                 onClick={() => goToPrevious(currentImages)}
                 className="w-10 h-6 border border-black flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-200 font-bold text-lg leading-none"
@@ -294,7 +303,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                 ←
               </button>
 
-              {/* Dots in the center */}
               <div className="flex space-x-2">
                 {currentImages.map((_, index) => (
                   <button
@@ -310,7 +318,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                 ))}
               </div>
 
-              {/* Right Arrow */}
               <button
                 onClick={() => goToNext(currentImages)}
                 className="w-10 h-6 border border-black flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-200 font-bold text-lg leading-none"
@@ -327,7 +334,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           <div className="space-y-6 flex-1">
             <div>
               <h1 className="text-2xl font-bold mb-2 tracking-wide">{product.name}</h1>
-              <p className="text-2xl font-bold">${product.price}</p>
+              <p className="text-2xl font-bold">{product.price} LEK</p>
             </div>
 
             <div className="space-y-8 mt-16">
@@ -377,7 +384,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                   ))}
                 </div>
 
-                {/* Size availability message */}
                 {selectedSize && !isSizeAvailable(selectedSize) && (
                   <p className="text-sm text-red-600 font-medium">This size is not available</p>
                 )}
@@ -416,16 +422,16 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pb-4">
                   <div className="text-xs text-gray-600 space-y-2 font-medium">
-                    <p>Free standard shipping on orders over $200 USD.</p>
-                    <p>Returns accepted within 30 days of purchase.</p>
-                    <p>Items must be in original condition with tags attached.</p>
+                    <p>No returns after purchase.</p>
+                    <p>Free standard shipping on every order.</p>
+                    <p>Items delievered in personalized boxes.</p>
                   </div>
                 </CollapsibleContent>
               </Collapsible>
             </div>
           </div>
 
-          {/* Action Buttons - Aligned to bottom */}
+          {/* Action Buttons */}
           <div className="grid grid-cols-2 gap-4 mt-8">
             <button
               onClick={handleAddToBag}

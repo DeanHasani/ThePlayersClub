@@ -86,7 +86,7 @@ export default function ShoppingBag() {
                       <p className="text-sm text-gray-600 font-medium">
                         {item.color} / {item.size}
                       </p>
-                      <p className="font-bold">${item.price}</p>
+                      <p className="font-bold">{item.price} LEK</p>
 
                       <div className="flex items-center space-x-2 mt-2">
                         <Button variant="outline" size="sm" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
@@ -114,7 +114,7 @@ export default function ShoppingBag() {
 
               <div className="flex justify-between items-center font-semibold text-sm">
                 <span>SUBTOTAL</span>
-                <span>${total}</span>
+                <span>{total} LEK</span>
               </div>
 
               <div className="space-y-2">

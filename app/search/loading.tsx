@@ -1,3 +1,9 @@
+import LoadingSpinner from "@/components/loading-spinner"
+
 export default function Loading() {
-  return null
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <LoadingSpinner />
+    </div>
+  )
 }

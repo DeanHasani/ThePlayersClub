@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Search, X } from "lucide-react"
 import Link from "next/link"
 import type { Product } from "@/lib/types"
+import LoadingSpinner from "@/components/loading-spinner"
 
 export default function SearchPage() {
   const searchParams = useSearchParams()
@@ -45,9 +46,8 @@ export default function SearchPage() {
   if (loading) {
     return (
       <div className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto mb-4"></div>
-          <p>Searching for "{query}"...</p>
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <LoadingSpinner />
         </div>
       </div>
     )

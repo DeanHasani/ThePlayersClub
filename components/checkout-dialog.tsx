@@ -48,14 +48,14 @@ export default function CheckoutDialog({ isOpen, onClose, items, total }: Checko
 Quantity: ${item.quantity}
 Color: ${item.color}
 Size: ${item.size}
-Amount to pay: $${subtotal.toFixed(2)}
+Amount to pay: ${subtotal.toFixed(2)} LEK
 Product link: ${productUrl}`
   }
 
   const generateFullMessage = () => {
     const greeting = "Hello Players!"
     const productMessages = items.map(generateProductMessage).join("\n\n---\n\n")
-    return `${greeting}\n\n${productMessages}\n\n---\n\nTotal Amount: $${total.toFixed(2)}`
+    return `${greeting}\n\n${productMessages}\n\n---\n\nTotal Amount: ${total.toFixed(2)} LEK`
   }
 
   // Update the handleWhatsApp function
@@ -209,7 +209,7 @@ Product link: ${productUrl}`
                         <p className="text-xs text-gray-600">
                           {item.color} / {item.size} × {item.quantity}
                         </p>
-                        <p className="text-sm font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="text-sm font-bold">{(item.price * item.quantity).toFixed(2)} LEK</p>
                       </div>
                     </div>
                   ))}
@@ -219,7 +219,7 @@ Product link: ${productUrl}`
                 <div className="mt-4 pt-3 border-t border-gray-200">
                   <div className="flex justify-between items-center font-bold">
                     <span className="tracking-wider">TOTAL</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>{total.toFixed(2)} LEK</span>
                   </div>
                 </div>
               </div>

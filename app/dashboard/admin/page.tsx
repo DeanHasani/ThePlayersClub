@@ -214,7 +214,7 @@ export default function AdminDashboard() {
       return
     }
     subtractFromStats(amount, 0)
-    showToast(`$${amount.toFixed(2)} subtracted from revenue`, "success")
+    showToast(`${amount.toFixed(2)} ALL subtracted from revenue`, "success")
     setSubtractRevenue("")
     setShowSubtractRevenue(false)
     loadData()
@@ -891,7 +891,7 @@ export default function AdminDashboard() {
                 <div className="bg-gray-50 p-3 rounded">
                   <p className="text-sm font-medium text-gray-900">{productToDelete.name}</p>
                   <p className="text-xs text-gray-600">
-                    {productToDelete.category} • ${productToDelete.price}
+                    {productToDelete.category} • {productToDelete.price} LEK
                   </p>
                 </div>
               </div>
@@ -1096,7 +1096,7 @@ export default function AdminDashboard() {
                     <CardTitle className="text-xs sm:text-sm font-medium">Total Revenue</CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <div className="text-xl sm:text-2xl font-bold">${stats.totalRevenue.toFixed(2)}</div>
+                    <div className="text-xl sm:text-2xl font-bold">{stats.totalRevenue.toFixed(2)} ALL</div>
                     <div className="flex flex-col gap-1 mt-2">
                       <div className="flex gap-1">
                         <Button
@@ -1211,7 +1211,7 @@ export default function AdminDashboard() {
                             <div className="flex-1 min-w-0">
                               <h3 className="font-semibold text-sm sm:text-base truncate">{product.name}</h3>
                               <p className="text-xs sm:text-sm text-gray-600">
-                                {product.category} • ${product.price}
+                                {product.category} • {product.price} ALL
                               </p>
                               <p className="text-xs text-gray-500 mt-1 truncate">ID: {productId}</p>
                               <div className="flex flex-wrap gap-1 mt-2">
@@ -1290,7 +1290,7 @@ export default function AdminDashboard() {
 
                     <div className="space-y-2">
                       <Label htmlFor="price" className="text-sm font-medium">
-                        Price ($) *
+                        Price (ALL) *
                       </Label>
                       <Input
                         id="price"
@@ -1662,7 +1662,7 @@ export default function AdminDashboard() {
                                 {new Date(order.timestamp).toLocaleDateString()}
                               </span>
                             </div>
-                            <p className="text-sm font-medium">${order.total.toFixed(2)}</p>
+                            <p className="text-sm font-medium">{order.total.toFixed(2)} ALL</p>
                             <p className="text-xs text-gray-600">{order.items.length} item(s)</p>
                           </div>
                           <div className="text-right">

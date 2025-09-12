@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import type { Product } from "@/lib/types"
+import LoadingSpinner from "@/components/loading-spinner"
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([])
@@ -33,10 +34,9 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-black mx-auto mb-4"></div>
-          <p className="text-sm sm:text-base">Loading products...</p>
+      <div className="min-h-screen">
+        <div className="min-h-[70vh] flex items-center justify-center">
+          <LoadingSpinner />
         </div>
       </div>
     )

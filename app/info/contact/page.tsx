@@ -31,7 +31,7 @@ export default function ContactPage() {
                     e-mail: tplsclub@gmail.com 
                     </p>
                     <p>
-                    WhatsApp: +355 96 000 0000
+                    WhatsApp: +355 68 800 4174
                     </p>
                 </b>
             </p>

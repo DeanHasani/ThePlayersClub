@@ -61,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="space-y-1">
         <h3 className="text-xs sm:text-sm font-medium tracking-wide line-clamp-2">{product.name}</h3>
         {!product.inStock && <p className="text-xs text-red-500 font-medium">SOLD OUT</p>}
-        <p className="text-xs sm:text-sm font-semibold">${product.price}</p>
+        <p className="text-xs sm:text-sm font-semibold">{product.price} LEK</p>
 
         {/* Show sizes on mobile below the product info */}
         {product.availableSizes && product.availableSizes.length > 0 && (

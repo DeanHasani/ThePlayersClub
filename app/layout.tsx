@@ -14,7 +14,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "THE PLAYERS CLUB - FASHION AND APPAREAL",
   description: "designed by Dean Hasani",
-}
+   icons: {
+    icon: "/icon.svg", //favicon
+  },
+};
 
 export default function RootLayout({
   children,

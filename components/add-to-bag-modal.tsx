@@ -95,7 +95,7 @@ export default function AddToBagModal({
             <p className="text-sm font-medium">
               {productColor} / {productSize}
             </p>
-            <p className="font-bold">${productPrice}</p>
+            <p className="font-bold">{productPrice} LEK</p>
           </div>
 
           <div className="space-y-2">

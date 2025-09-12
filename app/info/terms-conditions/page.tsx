@@ -115,7 +115,7 @@ export default function TermsConditionsPage() {
                 Independent Brand – Designed in Tirana
                 </p>
                 <p>
-                +355 69 000 0000
+                +355 68 800 4174
                 </p>
                 <p>
                 <u>
