@@ -81,7 +81,7 @@ export default function HomePage() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide drop-shadow-lg"> 
-                  SHIRT COLLECTION
+                  T-SHIRT COLLECTION
                 </h2>
               </div>
             </div>
