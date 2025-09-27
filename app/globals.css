@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+
+
 
 @layer base {
   :root {
@@ -48,6 +51,12 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
+}
+
+.body-h2 {
+  font-family: 'Playfair Display', serif;
+  text-shadow: 
+    4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 @layer base {
