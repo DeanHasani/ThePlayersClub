@@ -5,6 +5,7 @@ import "./globals.css"
 import ClientLayout from "./client-layout"
 import ErrorBoundary from "@/components/error-boundary"
 import { ToastContainer } from "@/components/toast"
+import Cookies from "@/components/cookies";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,9 +27,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Add Luckiest Guy font here */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className={`${inter.className} font-medium`}>
         <ErrorBoundary>
           <ClientLayout>{children}</ClientLayout>
+          <Cookies />
           <ToastContainer />
         </ErrorBoundary>
       </body>
