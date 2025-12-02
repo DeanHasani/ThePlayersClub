@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "THE PLAYERS CLUB - FASHION AND APPAREAL",
   description: "designed by Dean Hasani",
    icons: {
-    icon: "/icon.svg", //favicon
+    icon: "/icon.svg", 
   },
 };
 
@@ -28,7 +28,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add Luckiest Guy font here */}
         <link
           href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
           rel="stylesheet"

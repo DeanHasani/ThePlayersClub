@@ -72,9 +72,9 @@ export default function Header() {
     <>
       {searchOpen && <div className="fixed inset-0 bg-black/50 z-30" onClick={() => setSearchOpen(false)} />}
       <header
-        className={cn("sticky top-0 z-40 transition-colors duration-300 text-black", {
-          "bg-white/80 backdrop-blur-sm border-b border-gray-200": isScrolled && !isDropdownOpen,
-          "bg-white border-b border-gray-200": isDropdownOpen,
+        className={cn("sticky top-0 z-40 transition-all duration-300 text-black", {
+          "bg-white/30 backdrop-blur-md backdrop-saturate-150 border-b border-white/20 shadow-sm": isScrolled && !isDropdownOpen,
+          "bg-white/50 backdrop-blur-lg backdrop-saturate-150 border-b border-white/30 shadow-lg": isDropdownOpen,
           "bg-transparent border-b border-transparent": !isScrolled && !isDropdownOpen,
         })}
       >

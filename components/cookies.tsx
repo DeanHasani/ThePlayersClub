@@ -9,16 +9,20 @@ export default function Cookies() {
 
   useEffect(() => {
     // Check if consent cookie exists
-    const consentCookie = document.cookie
-      .split(";")
-      .map((c) => c.trim())
-      .find((c) => c.startsWith("cookie_consent="));
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(';').shift();
+      return null;
+    };
 
-    // Show banner only if cookie is missing (works in dev & prod)
-    if (!consentCookie) {
+    const consentValue = getCookie("cookie_consent");
+
+    // Show banner only if cookie doesn't exist or has no value
+    if (!consentValue) {
       setTimeout(() => {
         setVisible(true);
-        setTimeout(() => setAnimate(true), 50); // trigger slide up
+        setTimeout(() => setAnimate(true), 50);
       }, 200);
     }
   }, []);
@@ -30,8 +34,8 @@ export default function Cookies() {
       document.cookie = `cookie_consent=${value}; max-age=${maxAge}; path=/; SameSite=Lax${secure}`;
     }
 
-    setAnimate(false); // slide down
-    setTimeout(() => setVisible(false), 500); // match transition duration
+    setAnimate(false);
+    setTimeout(() => setVisible(false), 500);
   };
 
   if (!visible) return null;
@@ -45,7 +49,6 @@ export default function Cookies() {
           opacity: animate ? 1 : 0,
         }}
       >
-        {/* Close (X) button */}
         <button style={closeBtnStyle} onClick={() => handleClose()}>
           ✕
         </button>
@@ -121,7 +124,7 @@ const containerStyle: React.CSSProperties = {
   padding: "10px 12px 12px 12px",
   boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
   width: 180,
-  transition: "all 0.5s ease", // smooth slide, slightly slower
+  transition: "all 0.5s ease",
 };
 
 const closeBtnStyle: React.CSSProperties = {
