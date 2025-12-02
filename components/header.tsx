@@ -363,20 +363,20 @@ export default function Header() {
           {searchOpen && (
             <div className="border-t border-gray-200 py-4">
               <form onSubmit={handleSearch} className="flex items-center space-x-2">
-                <Search className="h-4 w-4 text-gray-400" />
+                <Search className="h-4 w-4 text-black" />
                 <input
                   type="text"
                   placeholder="Search products, categories..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 border-none outline-none text-sm font-medium bg-transparent"
+                  className="flex-1 border-none outline-none text-sm font-medium bg-transparent placeholder:text-black"
                   autoFocus
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => setSearchQuery("")}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-black hover:text-gray-600"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -384,13 +384,13 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
-                  className="text-gray-400 hover:text-gray-600 ml-2"
+                  className="text-black hover:text-gray-600 ml-2"
                 >
                   <X className="h-4 w-4" />
                 </button>
               </form>
               {searchQuery.length > 0 && (
-                <div className="mt-2 text-xs text-gray-500">Press Enter to search for "{searchQuery}"</div>
+                <div className="mt-2 text-xs text-black">Press Enter to search for "{searchQuery}"</div>
               )}
             </div>
           )}
